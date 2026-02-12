@@ -1,73 +1,74 @@
-# React + TypeScript + Vite
+# Meeting Action Items Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A lightweight web app to **extract, manage, and track action items** from meeting transcripts.  
+Paste your meeting transcript, get action items automatically, edit/add/delete tasks, mark them done, and keep a history of your last 5 meetings.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## React Compiler
+- Paste a meeting transcript and **extract action items** (task + owner + due date if available).
+- **Edit, add, or delete** action items.
+- **Mark tasks as done** and filter by status (All / Open / Done).
+- View a **history of the last 5 transcripts** processed.
+- Responsive and clean UI, inspired by premium SaaS apps.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+https://meeting-action-items-tracker-eta.vercel.app/
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Tech Stack
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Frontend:** React + TypeScript + Tailwind CSS
+- **Backend / API:** Node.js + Express (for action item processing)
+- **Database:** Supabase
+- **AI Integration:** OpenAI API to extract action items from transcripts
+- **Build Tools:** Vite, TypeScript
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Setup Instructions
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/karusaini/meeting-action-items-tracker.git
+   cd meeting-action-items-tracker
+   ```
+
+Install dependencies
+
+npm install
+Environment variables
+
+Copy variables from .env.example:
+
+SUPABASE_URL=
+SUPABASE_KEY=
+OPENAI_API_KEY=
+Fill in your Supabase project URL/Key and OpenAI API key.
+
+Run the app in development mode
+
+npm run dev
+
+Build for production
+
+npm run build
+
+🧪 How It Was Tested
+
+Extracting action items from sample transcripts.
+
+Editing, adding, deleting, marking tasks as done.
+
+History of last 5 transcripts verified.
+
+Filters (Open/Done/All) working correctly.
+
+Responsive UI on desktop and mobile.
+
+Made with ❤️ by Karina Saini

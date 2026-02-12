@@ -20,7 +20,7 @@ export default function ActionList({
         <ActionItem
           key={item.id}
           item={item}
-          toggleDone={onToggle} // pass properly to ActionItem
+          toggleDone={onToggle}
           deleteTask={onDelete}
           updateTask={(id, updated) => onEdit(id, updated.task || "")}
         />

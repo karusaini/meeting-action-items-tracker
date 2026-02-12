@@ -1,21 +1,50 @@
-import OpenAI from "openai";
-import { ActionItem } from "../types";
+// Type-only import for ActionItem
+import type { ActionItem } from "../types";
 
-const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
+/**
+ * This function simulates AI extracting action items from a meeting transcript.
+ * Replace this with real AI API call (OpenAI, etc.) when ready.
+ */
 export async function extractActionItems(
   transcript: string,
 ): Promise<ActionItem[]> {
-  const prompt = `Extract action items from this meeting transcript. Include task, owner, due date if available in JSON format. Transcript:\n\n${transcript}`;
+  // For now, we use a fake AI response
+  const output = await fakeAI(transcript);
 
-  const response = await client.chat.completions.create({
-    model: "gpt-4o-mini",
-    messages: [{ role: "user", content: prompt }],
-  });
+  if (!output) {
+    return [];
+  }
 
-  const output = response.choices[0].message.content;
+  // Parse JSON safely
+  try {
+    const parsed = JSON.parse(output) as ActionItem[];
+    return parsed;
+  } catch (err) {
+    console.error("Failed to parse AI output:", err);
+    return [];
+  }
+}
 
-  return JSON.parse(output) as ActionItem[];
+/**
+ * Fake AI function for testing
+ * `_` means parameter is unused (prevents TS warning)
+ */
+async function fakeAI(_: string): Promise<string | null> {
+  // Example hardcoded action items
+  return JSON.stringify([
+    {
+      id: "1",
+      task: "Send updated proposal",
+      owner: "Alice",
+      due: "Tomorrow",
+      done: false,
+    },
+    {
+      id: "2",
+      task: "Prepare dashboard metrics",
+      owner: "Bob",
+      due: "Friday",
+      done: false,
+    },
+  ]);
 }

@@ -1,8 +1,8 @@
-import type { ActionItem } from "../types";
-import ActionItemComponent from "./ActionItem";
+import type { ActionItem as ActionItemType } from "../types";
+import ActionItem from "./ActionItem";
 
 interface Props {
-  items: ActionItem[];
+  items: ActionItemType[];
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
   onEdit: (id: string, value: string) => void;
@@ -14,19 +14,17 @@ export default function ActionList({
   onDelete,
   onEdit,
 }: Props) {
-  if (!items.length) return <p className="text-gray-500">No tasks found.</p>;
-
   return (
-    <div className="mt-4">
+    <>
       {items.map((item) => (
-        <ActionItemComponent
+        <ActionItem
           key={item.id}
           item={item}
-          onToggle={onToggle}
-          onDelete={onDelete}
-          onEdit={onEdit}
+          toggleDone={onToggle} // pass properly to ActionItem
+          deleteTask={onDelete}
+          updateTask={(id, updated) => onEdit(id, updated.task || "")}
         />
       ))}
-    </div>
+    </>
   );
 }

@@ -24,13 +24,12 @@ export default function ActionItem({
 
   return (
     <div className="flex justify-between items-start gap-4 p-4 rounded-2xl border border-white/20 bg-white/5 backdrop-blur-md shadow-md hover:shadow-lg transition-all duration-300">
-      {/* Task Info */}
       <div className="flex-1">
         {isEditing ? (
           <input
             value={editedTask}
             onChange={(e) => setEditedTask(e.target.value)}
-            className="w-full bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-white/40"
+            className="w-full bg-black/50 border border-white/20 rounded-lg px-3 py-2 text-white focus:outline-none focus:border-white/40 transition-all"
           />
         ) : (
           <p
@@ -50,7 +49,6 @@ export default function ActionItem({
         )}
       </div>
 
-      {/* Actions */}
       <div className="flex flex-col gap-2">
         <button
           onClick={() => toggleDone(item.id)}

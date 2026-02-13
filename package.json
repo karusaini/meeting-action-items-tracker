@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start-server": "ts-node server/index.ts",
+    "start": "node server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.95.3",
@@ -15,6 +17,7 @@
     "cors": "^2.8.6",
     "dotenv": "^17.2.4",
     "express": "^5.2.1",
+    "lucide-react": "^0.563.0",
     "openai": "^6.21.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
